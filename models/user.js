@@ -42,10 +42,10 @@ module.exports = (sequelize, DataTypes) => {
             msg: "Password is required.",
           },
         },
-      },
-      set(val) {
-        const hashPassword = bcrypt.hashSync(val, 10);
-        this.setDataValue("password", hashPassword);
+        set(val) {
+            const hashPassword = bcrypt.hashSync(val, 10);
+            this.setDataValue("password", hashPassword);
+          },
       },
     },
     { sequelize }

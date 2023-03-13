@@ -42,7 +42,7 @@ router.post(
       res.location("/");
       res.status(201).end();
     } catch (error) {
-      res.status(400).json({ errors });
+      res.status(400).json({ error });
     }
   })
 );
@@ -87,7 +87,7 @@ router.post(
       res.location(`/courses/${course.id}`);
       res.status(201).end();
     } catch (error) {
-      if ((error.name = "SequelizeValidationError")) {
+      if ((error.name === "SequelizeValidationError")) {
         const errors = error.errors.map((err) => err.message);
         res.status(400).json({ errors });
       } else {
