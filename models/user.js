@@ -3,6 +3,8 @@ const { Model, DataTypes } = require("sequelize");
 const { Database } = require("sqlite3");
 const bcrypt = require("bcrypt");
 
+//create User model
+
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {}
   User.init(

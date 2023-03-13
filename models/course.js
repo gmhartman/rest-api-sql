@@ -2,6 +2,8 @@
 const { Model, DataTypes } = require('sequelize');
 const { sequelize } = require('.');
 
+//create Course model
+
 module.exports = (sequelize) => {
     class Course extends Model {}
     Course.init({
