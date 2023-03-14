@@ -42,7 +42,12 @@ router.post(
       res.location("/");
       res.status(201).end();
     } catch (error) {
-      res.status(400).json({ error });
+      if (error.name === "SequelizeValidationError") {
+        const errors = error.errors.map((err) => err.message);
+        res.status(400).json({ errors });
+      } else {
+        throw error;
+      }
     }
   })
 );
@@ -104,7 +109,7 @@ router.put(
   asyncHandler(async (req, res) => {
     try {
       const course = await Course.findByPk(req.params.id);
-      if (course.userId === user.id) {
+        if (course && req.currentUser.id === course.userId) {
         await course.update(req.body)
         res.status(204).end();
       } else {
